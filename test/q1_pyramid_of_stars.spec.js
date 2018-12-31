@@ -7,7 +7,6 @@ describe('Testing - pyramid_of_stars', () => {
 		expect(typeof pyramid).to.deep.equal('function');
 		done();
 	});
-
 	it('positive test case for odd count of height', (done) => {
 		expect(pyramid(5)).equal(
 			'     *  \n    * *  \n   * * *  \n  * * * *  \n * * * * *  \n');
@@ -24,4 +23,5 @@ describe('Testing - pyramid_of_stars', () => {
 		expect(pyramid('invalid value')).to.deep.equal('');
 		done();
 	});
+	
 });

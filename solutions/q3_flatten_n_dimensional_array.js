@@ -1,31 +1,32 @@
 /* Write a Program to Flatten a given n-dimensional array */
 
-const flatten = (arr) => {
-  if(arr instanceof Array) {
-   return arr.reduce((acc, value)=> {
-     return acc.concat(value instanceof Array ? flatten(value) : value);
-   }, []);
- }
-   return null;
+const flatten = (flattenMe) => {
+	if (typeof flattenMe === 'string') {
+		return null;
+	}
+
+	// Write your code here
+	let answer = [];
+	function doWork(flattenMe1) {
+		for (let i = 0, l = flattenMe1.length; i < l; i += 1) {
+			let element = flattenMe1[i];
+			if (typeof element === "object" && element instanceof Array) {
+				doWork(element);
+			}
+			else {
+				answer.push(element);
+			}
+		}
+	}
+	doWork(flattenMe);
+	return answer;
+	//return flattened;
 };
 
-
-// AnotherSolution
-// if(!r){ r = null}
-// if(a instanceof Array) {
-//   for(var i=0; i<a.length; i++){
-//     if(r === null){ r = []}
-//     if(a[i].constructor == Array){
-//       flatten(a[i],r);
-//     }else{
-//       r.push(a[i]);
-//     }
-//   }
-// }
-// return r;
 /* For example,
 INPUT - flatten([1, [2, 3], [[4], [5]])
 OUTPUT - [ 1, 2, 3, 4, 5 ]
 
 */
+
 module.exports = flatten;

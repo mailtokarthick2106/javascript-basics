@@ -5,20 +5,33 @@
 
 // Write your code here
 
-function getFruit(fruit) {
-  let temp;
-  for(var item of fruitList){
-    if(item.name === fruit) {
-      console.log("Fruit color :" +item.color);
-      console.log("Fruit pricePerKg :" +item.pricePerKg);
-    }
-  }
+function Fruits(name, color, pricePerKg) {
+    this.name = name;
+    this.color = color;
+    this.pricePerKg = pricePerKg;
 }
+let fruit1 = new Fruits('Apple', 'Red', '100');
+let fruit2 = new Fruits('Orange', 'yellow', '80');
+let fruit3 = new Fruits('mongo', 'yellow', '50');
+let fruit4 = new Fruits('Pomgrate', 'Red', '150');
+let fruit5 = new Fruits('Gova', 'greeen', '70');
+let list = [fruit1, fruit2, fruit3, fruit4, fruit5];
+let color = '';
+const formatFruit = (flattenMe) => {
+    if (typeof flattenMe === 'number') {
+        return null;
+    }
+    if (list.length > 0) {
+       
+        for (let i = 0; i < list.length; i += 1) {
+            if (flattenMe === list[i].name) {
+                color = list[i].color;
+            }
+        }
+    }
+    return color;
+
+};
 
 
-const fruitList = [
- {"name" : "apple", "color" : "red", "pricePerKg" : "50"},
-  {"name" : "orange", "color" : "Yellow", "pricePerKg" : "40"}
-]
-
-getFruit('orange');
+module.exports = formatFruit;

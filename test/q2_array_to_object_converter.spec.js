@@ -29,7 +29,7 @@ describe('Testing - array_to_object_converter', () => {
 	});
 
 	it('negative test case', (done) => {
-		expect(convert(testObj, 'invalid value')).to.deep.equal(null);
+		expect(convert('invalid value')).to.deep.equal(null);
 		done();
 	});
 });

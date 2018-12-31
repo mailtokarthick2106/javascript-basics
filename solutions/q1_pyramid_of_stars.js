@@ -1,30 +1,42 @@
 /* Write a program to build a `Pyramid of stars` of given height */
-
-const buildPyramid = (h) => {
-const arrayOfKeys = [... Array(h).keys()];
-
-function constructRow(key, height) {
-  let str = '';
-  for(let i = 0; i < height - key; i += 1) {
-    str += ' ';
+let oddrow = '';
+const buildPyramid = (height) => {
+  if (typeof height === 'string') {
+    return '';
   }
-  for(let k = str.length; k <= height; k += 1) {
-    str += '* ';
+  if (height % 2 === 0) {
+    let evenrow = '';
+    for (let i = 1; i <= height; i += 1) {
+      for (let k = 1; k <= (height - i); k += 1) {
+        evenrow = evenrow + ' ';
+      }
+      for (let j = 1; j <= i; j += 1) {
+        evenrow = evenrow + ' *';
+        //if (j === i) {
+
+        // }
+      }
+      evenrow += '  \n';
+    }
+    return evenrow;
   }
-  return str;
-}
+  if (height % 2 !== 0) {
+   
+    for (let i = 1; i <= height; i += 1) {
+      for (let k = 1; k <= (height - i); k += 1) {
+        oddrow = oddrow + ' ';
+      }
+      for (let j = 1; j <= i; j += 1) {
+        oddrow = oddrow + ' *';
+        //if (j === i) {     
+        //}
+      }
+      oddrow += '  \n';
 
-const arrayOfRows = arrayOfKeys.map(key=>{
- return constructRow(key, h);
-});
-
- const pyramid = arrayOfRows.join(' \n');
-
- // To make test case pass we are adding the \n at the end
- if (pyramid === '') {
-   return pyramid;
- }
-  return pyramid + ' \n';
+    }
+    //return oddrow;
+  }
+return oddrow; 
 };
 
 /* For example,

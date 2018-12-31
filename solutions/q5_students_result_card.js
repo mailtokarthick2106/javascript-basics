@@ -3,44 +3,45 @@
 // Out of 100 students, 50 has subjects - Grammer and Accounts
 // and other 50 has subjects -  Grammer and Physics
 
+// Hint : You need to calculate percentage of 100 students having different set of subjects.
+//        You can assume their scores on their respective subjects.
+
 
 // Write your code here
 
-  class Student {
-      constructor(name, subjects) {
-          this.name = name;
-          this.subjects = subjects;
-      }
-      getTotalScore() {
-        return this.subjects.reduce((accumulator,item) => {
-            return accumulator = accumulator + item.score;
-        }, 0);
-      }
-      getTotalMaxScore() {
-        return this.subjects.reduce((accumulator,item) => {
-            return accumulator = accumulator + item.maxScore;
-        }, 0);
-      }
-      getPercentage() {
-        return (this.getTotalScore()/this.getTotalMaxScore())*100;
-      }
-  }
+let list = [
+    { name: 'Karthick', subjects: [{ Grammer: 50, Accounts: 90 }] },
+    { name: 'Rajendran', subjects: [{ Grammer: 50, Accounts: 90 }] },
+    { name: 'Nikitha', subjects: [{ Grammer: 50, Physics: 70 }] },
+    { name: 'Vaishu', subjects: [{ Grammer: 50, Physics: 70 }] }
+];
+let resultArray=[];
+const resultcard = () => {
 
-  const accountsStudents = [];
-  for(let i=1;i<=50;i=i+1) {
-      accountsStudents.push(new Student(`Student${i}`, [
-          {name: 'grammer', score: Math.floor(Math.random()*100), maxScore: 100},
-          {name: 'accounts', score: Math.floor(Math.random()*100), maxScore: 150},
-      ]))
-  }
+    if (list.length > 0) {
+        for (let i = 0; i < list.length; i += 1) {
+            let subjects = list[i].subjects;
+            console.log(list[i].name);
+            let total = 0;
+            for (let j = 0; j < subjects.length; j += 1) {
+                if (subjects[j].Accounts !== null) {
+                    total = total + subjects[j].Accounts;
+                }
+                else if (subjects[j].Grammer !== null) {
+                    total = total + subjects[j].Grammer;
+                }
+                else if (subjects[j].Physics !== null) {
+                    total = total + subjects[j].Physics;
+                }
+            }
+            let percentage=(total/200)*100;
+            resultArray=[{name:list[i].subjects,percentage:percentage}];
 
-  const physicsStudents = [];
-  for(let i=1;i<=50;i=i+1) {
-      accountsStudents.push(new Student(`Student${i}`, [
-          {name: 'grammer', score: Math.floor(Math.random()*100), maxScore: 100},
-          {name: 'physics', score: Math.floor(Math.random()*100), maxScore: 150},
-      ]))
-  }
+        }
 
-  const accountRecord = accountsStudents.map(s=> Object.assign({}, {name : s.name}, {percentage : s.getPercentage()}))
-  console.log(accountRecord);
+    }
+    return resultArray;
+};
+
+
+module.exports = resultcard;
